@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="w3-responsive">
+<table class="table table-striped table-sm w3-table-all w3-small">
+    <tr>
+        <thead>
+            <th> EMPLOYEE ID </th>
+            <th> EMPLOYEE NAME </th>
+            <th> Employee Gender</th>
+            <th> Employee Experience</th>
+            <th> Employee Qualification</th>
+            <th> EMPLOYEE MOBILE </th>
+            <th> EMPLOYEE EMAIL </th>
+            <th> EMPLOYEE SALARY </th>
+            <th> Employee Position</th>
+            <th> EMPLOYEE ADDRESS </th>
+            <th> EMPLOYEE AWARDS</th>
+            <th>EMPLOYEE NICK</th>
+            <th>
+                <a href="{% url 'form' %}" class="btn btn-success btn-sm">Add New</a>
+            </th>
+        </thead>
+    </tr>
+{% for i in employee %}
+    <tbody>
+        <tr>
+            <td>{{i.emp_id}}</td>
+            <td>{{i.emp_name}}</td>
+            <td>{{i.emp_gender}}</td>
+            <td>{{i.emp_experience}}</td>
+            <td>{{i.emp_qual}}</td>
+            <td>{{i.emp_mobile}}</td>
+            <td>{{i.emp_email}}</td>
+            <td>{{i.emp_sal}}</td>
+            <td>{{i.emp_position}}</td>
+            <td>{{i.emp_add}}</td>
+            <td>{{i.emp_awards}}</td>
+            <td>{{i.emp_nick}}</td>
+            <td>
+                <form method="post" action="{% url 'delete' i.emp_id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger">delete</button>
+                </form>
+            </td>
+            <td>
+                <a href="{% url 'edit' i.emp_id %}"class="btn btn-outline-warning">edit</a>
+            </td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+</div>
+
+{% endblock %}
